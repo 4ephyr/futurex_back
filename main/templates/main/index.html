@@ -1,0 +1,702 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block owlStyles %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />{% endblock owlStyles %}
+
+{% block lottieScript %}<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>{% endblock lottieScript %}
+
+{% block popup %}
+
+  <!-- ==== PopUp Starts ==== -->
+
+  <div class="apply_now_popup relative">
+    <div
+      class="pop_up_main fixed overflow-y-auto left-1/2 top-1/2 flex w-9/12 max-w-screen-lg -translate-x-1/2 translate-y-full transform flex-row items-center justify-between bg-neutral-p p-10 opacity-0 ipadscreen:inset-0 ipadscreen:left-[100%] ipadscreen:h-full ipadscreen:w-full ipadscreen:transform-none ipadscreen:items-start ipadscreen:bg-primary ipadscreen:px-5"
+      id="main_popup">
+      <div class="details_form max-w-[50%] grow-2 ipadscreen:max-w-none ipadscreen:py-24">
+        <form action="javascript:void(0)" class="details flex flex-col gap-4" id="reg_form">
+          {% csrf_token %}
+          <div class="name_input flex flex-col">
+            <label for="{{form.name.name}}" class="mb-2 text-sm font-medium text-[#9E9E9E]">Name</label>
+            <input type="text" id="name"
+              class="font-base w-full rounded-xl bg-neutral-p px-6 py-3 tracking-wide placeholder:text-[#9E9E9E]"
+              placeholder="Your Name" name="{{form.name.name}}" />
+          </div>
+          <div class="email_input flex flex-col">
+            <label for="{{form.email.name}}" class="mb-2 text-sm font-medium text-[#9E9E9E]">Email</label>
+            <input type="email" id="email"
+              class="font-base w-full rounded-xl bg-neutral-p px-6 py-3 tracking-wide placeholder:text-[#9E9E9E]"
+              placeholder="Your Email" name="{{form.email.name}}"/>
+          </div>
+          <div class="phone_input flex flex-col">
+            <label for="{{form.phone.name}}" class="mb-2 text-sm font-medium text-[#9E9E9E]">Phone
+              Number</label>
+            <div class="flex flex-row gap-3">
+              <select id="country_code" class="rounded-xl border-0 border-none bg-neutral-p text-[#9E9E9E] outline-none" name="{{form.country_code.name}}">
+                {% for code, country in country_codes  %}
+                  <option value="+91">{{country}}, +{{code}}</option>
+                {% endfor %}                
+              </select>
+              <input type="tel" id="phone"
+                class="font-base w-full rounded-xl bg-neutral-p px-6 py-3 tracking-wide placeholder:text-[#9E9E9E]"
+                placeholder="Your phone number" name="{{form.phone.name}}"/>
+            </div>
+          </div>
+          <div class="course_input flex flex-col">
+            <label for="{{form.course.name}}" class="mb-2 text-sm font-medium text-[#9E9E9E]">Course</label>
+            <input type="text" id="course"
+              class="font-base w-full rounded-xl bg-neutral-p px-6 py-3 tracking-wide placeholder:text-[#9E9E9E]"
+              placeholder="Choose Course" list="courses" name="{{form.course.name}}"/>
+            <datalist id="courses">
+              <option value="UI/UX Designer"></option>
+              <option value="Web Development"></option>
+              <option value="FullStack Development"></option>
+            </datalist>
+            <div id="error-message" class="mt-2 hidden text-red-500">
+              Please provide a valid course.
+            </div>
+          </div>
+          <div class="form_submit grid place-items-end">
+            <button class="apply-now-btn font-medium" id="submit-button" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="167" height="45" viewBox="0 0 167 45" fill="#FDFC00"
+                class="app-svg">
+                <path
+                  d="M150.211 2.03716C149.103 1.01488 147.651 0.447266 146.143 0.447266H6C2.68629 0.447266 0 3.13356 0 6.44727V38.4473C0 41.761 2.68629 44.4473 6 44.4473H161C164.314 44.4473 167 41.761 167 38.4473V20.1528C167 18.4775 166.3 16.8786 165.068 15.7427L150.211 2.03716Z"
+                  fill="none" stroke="#FDFC00" stroke-width="3" />
+              </svg>
+              <p class="app-t3">Apply Now</p>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="pop_illustration m-auto ipadscreen:hidden">
+        <img src="{% static 'assets/img/svg/popup_illustration.svg' %}" alt class="ipadscreen:mx-auto" />
+      </div>
+      <div class="close_form absolute right-0 top-0 m-4 rotate-45 cursor-pointer p-4" id="close_form">
+        <img src="{% static 'assets/img/svg/plus.svg' %}" alt />
+      </div>
+    </div>
+  </div>
+
+  <!-- ==== PopUp Ends ==== -->
+{% endblock popup %}
+
+{% block content %}
+<section class="spotlight container relative mx-auto">
+    <div
+      class="spotlight-text flex flex-col place-items-center py-36 bigscreen:py-40 newscreen:py-48 xlbigscreen:py-60 phone_max:place-items-start phone_max:px-8 phone_max:py-0"
+      id="spotlight_text">
+      <div>
+        <h1
+          class="text-center text-5xl font-bold leading-[1.3] 2xl:text-6xl ipad_min:text-[5vw] phone_max:whitespace-normal phone_max:text-left phone_max:font-medium">
+          Buliding Tomorrow's Innovators <br />
+          Join Bahrain's Premier Tech Training Institute
+        </h1>
+      </div>
+      <div class="my-8 phone_max:mt-4">
+        <p
+          class="spt-p text-center text-[1.4rem] font-normal leading-[1.3] ipad_min:text-[5vw] phone_max:text-left phone_max:text-[1.1rem]">
+          Be a Part of Bahrain's Vibrant Digital Economy: Learn, Build, and
+          Scale with Us!
+        </p>
+      </div>
+      <div>
+        <button class="apply-now-btn font-medium" id="apply_now_main">
+          <svg xmlns="http://www.w3.org/2000/svg" width="167" height="45" viewBox="0 0 167 45" fill="#FDFC00"
+            class="app-svg">
+            <path
+              d="M150.211 2.03716C149.103 1.01488 147.651 0.447266 146.143 0.447266H6C2.68629 0.447266 0 3.13356 0 6.44727V38.4473C0 41.761 2.68629 44.4473 6 44.4473H161C164.314 44.4473 167 41.761 167 38.4473V20.1528C167 18.4775 166.3 16.8786 165.068 15.7427L150.211 2.03716Z"
+              fill="none" stroke="#FDFC00" stroke-width="3" />
+          </svg>
+          <p class="app-t">Apply Now</p>
+        </button>
+      </div>
+    </div>
+    <div
+      class="animation_1 mx-auto -mt-9 max-w-fit 2xl:-mt-12 smallscreen:w-[40px] phone_max:my-8 phone_max:h-[40px] phone_max:w-[40px]"
+      id="animation_1">
+      <lottie-player class="sm:h-[50px] sm:w-[50px]"
+        src="https://lottie.host/6aee297d-eac6-4b1c-a07e-e5933e33ed29/jD1M2X9f91.json" background="transparent"
+        speed="1" loop autoplay></lottie-player>
+    </div>
+  </section>
+  <section>
+    <div class="spot-illustration container mx-auto" id="code_typing">
+      <div class="home_illustration mx-auto max-w-fit phone_max:px-8">
+        <img src="{% static 'assets/img/svg/illustration_01.svg' %}" alt class="pointer-events-none select-none" />
+      </div>
+    </div>
+    <div
+      class="courses mx-auto flex max-w-[66.5rem] flex-wrap justify-center gap-y-4 px-8 py-20 phone_max:max-w-[95%] phone_max:justify-start [&>div]:min-w-fit [&>div]:max-w-fit [&>div]:bg-neutral-p [&>div]:text-custom-t">
+      <div class="c-1 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">UI/UX Development</span>
+      </div>
+      <div class="c-1 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Web Development</span>
+      </div>
+      <div class="c-1 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Software Development</span>
+      </div>
+      <div class="c-1 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Mobile Application Development</span>
+      </div>
+      <div class="c-2 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Cyber Security</span>
+      </div>
+      <div class="c-2 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Artificial Intelligence</span>
+      </div>
+      <div class="c-2 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Robotics</span>
+      </div>
+      <div class="c-2 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Web3: Block Chain</span>
+      </div>
+      <div class="c-2 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">IoT</span>
+      </div>
+      <div class="c-3 mx-2 rounded-xl p-6 vsmallscreen:rounded-[.25rem] vsmallscreen:p-2">
+        <span class="font-medium">Digital Marketing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== SpotLight Ends ==== -->
+
+    <!-- ==== Partners Starts ==== -->
+
+    <div class="partner_container container mx-auto my-14 py-8">
+        <div class="partner_heading">
+          <div class="p_h mx-auto max-w-fit">
+            <h1 class="text-4xl font-medium phone_max:text-2xl">
+              Our Partner Network
+            </h1>
+          </div>
+        </div>
+        <div class="animation_container mx-auto py-12">
+          <div class="slider1">
+            <div class="slide-track1">
+                    {% for partner in partners %}
+                      <div class="slide1">
+                        <img src="{{partner.partner1.url}}" alt />
+                      </div>
+                      <div class="slide1">
+                        <img src="{{partner.partner2.url}}" alt />
+                      </div>
+                      {% if partner.partner3 %}
+                          <div class="slide1">
+                            <img src="{{partner.partner3.url}}" alt />
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+                  </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- ==== Partners Ends ==== -->
+      <!-- ==== Features Starts ==== -->
+
+  <section class="mx-auto bg-secondary 2xlbigscreen:container">
+    <div class="your_benefits_all container mx-auto flex flex-col justify-center py-11">
+      <div class="your_benefits_h mx-auto max-w-fit">
+        <h1 class="max-w-fit text-4xl font-medium text-primary phone_max:text-2xl">
+          Your Benefits
+        </h1>
+      </div>
+      <div class="your_benefits_c flex flex-wrap justify-center gap-y-4 pt-9 phone_max:mx-[1.5rem]">
+        <div
+          class="y_b_1 flex min-w-fit max-w-fit items-center rounded-xl border border-neutral-p p-4 phone_max:w-full phone_max:max-w-full phone_max:rounded-[.25rem] phone_max:p-2">
+          <span><img src="{% static 'assets/img/svg/people.svg' %}" alt class="mr-2" /></span><span class="font-medium">Peer to Peer
+            Learning</span>
+        </div>
+        <div
+          class="y_b_2 flex min-w-fit max-w-fit items-center rounded-xl border border-neutral-p p-4 phone_max:w-full phone_max:max-w-full phone_max:rounded-[.25rem] phone_max:p-2">
+          <span><img src="{% static 'assets/img/svg/cup.svg' %}" alt class="mr-2" /></span><span class="font-medium">Not just a job, a
+            career</span>
+        </div>
+        <div
+          class="y_b_3 flex min-w-fit max-w-fit items-center rounded-xl border border-neutral-p p-4 phone_max:w-full phone_max:max-w-full phone_max:rounded-[.25rem] phone_max:p-2">
+          <span><img src="{% static 'assets/img/svg/personalcard.svg' %}" alt class="mr-2" /></span><span class="font-medium">Become a
+            digital pioneer</span>
+        </div>
+
+        <div
+          class="y_b_4 flex min-w-fit max-w-fit items-center rounded-xl border border-neutral-p p-4 phone_max:w-full phone_max:max-w-full phone_max:rounded-[.25rem] phone_max:p-2">
+          <span><img src="{% static 'assets/img/svg/game.svg' %}" alt class="mr-2" /></span><span class="font-medium">Gamification</span>
+        </div>
+        <div
+          class="y_b_5 flex min-w-fit max-w-fit items-center rounded-xl border border-neutral-p p-4 phone_max:w-full phone_max:max-w-full phone_max:rounded-[.25rem] phone_max:p-2">
+          <span><img src="{% static 'assets/img/svg/teacher.svg' %}" alt class="mr-2" /></span><span class="font-medium">Chief technical
+            officers as mentors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== Features Ends ==== -->
+
+  <!-- ==== Success Starts ==== -->
+
+  <section class="mx-auto pb-40 pt-56 2xlbigscreen:container phone_max:pb-20 phone_max:pt-20">
+    <div class="success-main flex flex-col px-24 phone_max:px-8">
+      <div class="success-h">
+        <h1 class="text-4xl font-medium text-custom-t phone_max:text-xl">
+          Meet Our Successful Students
+        </h1>
+      </div>
+      <div class="success-people">
+        <div class="people-main select-none">
+          <div class="p-s p-slider owl-carousel py-12 [&>div]:mx-3">
+            <div class="p-1-main flex flex-col">
+              <div class="p-1-pic relative overflow-hidden">
+                <img src="{% static 'assets/img/png/p1.png' %}" alt class="-z-10 grayscale" />
+                <div class="play absolute inset-0">
+                  <img src="{% static 'assets/img/svg/play.svg' %}" alt class="play-icon absolute" />
+                </div>
+              </div>
+              <div class="p-1-misc mt-1 w-full">
+                <p class="text-base font-normal text-custom-t">
+                  Cathrine - Placed at Script Lanes for 3.5 LPA
+                </p>
+              </div>
+            </div>
+            <div class="p-1-main flex flex-col">
+              <div class="p-1-pic relative overflow-hidden">
+                <img src="{% static 'assets/img/png/p2.png' %}" alt class="-z-10 grayscale" />
+                <div class="play absolute inset-0">
+                  <img src="{% static 'assets/img/svg/play.svg' %}" alt class="play-icon absolute" />
+                </div>
+              </div>
+              <div class="p-1-misc mt-1 w-full">
+                <p class="text-base font-normal text-custom-t">
+                  Cathrine - Placed at Script Lanes for 3.5 LPA
+                </p>
+              </div>
+            </div>
+            <div class="p-1-main flex flex-col">
+              <div class="p-1-pic relative overflow-hidden">
+                <img src="{% static 'assets/img/png/p3.png' %}" alt class="-z-10 grayscale" />
+                <div class="play absolute inset-0">
+                  <img src="{% static 'assets/img/svg/play.svg' %}" alt class="play-icon absolute" />
+                </div>
+              </div>
+              <div class="p-1-misc mt-1 w-full">
+                <p class="text-base font-normal text-custom-t">
+                  Cathrine - Placed at Script Lanes for 3.5 LPA
+                </p>
+              </div>
+            </div>
+            <div class="p-1-main flex flex-col">
+              <div class="p-1-pic relative overflow-hidden">
+                <img src="{% static 'assets/img/png/p4.png' %}" alt class="-z-10 grayscale" />
+                <div class="play absolute inset-0">
+                  <img src="{% static 'assets/img/svg/play.svg' %}" alt class="play-icon absolute" />
+                </div>
+              </div>
+              <div class="p-1-misc mt-1 w-full">
+                <p class="text-base font-normal text-custom-t">
+                  Cathrine - Placed at Script Lanes for 3.5 LPA
+                </p>
+              </div>
+            </div>
+            <div class="p-1-main flex flex-col">
+              <div class="p-1-pic relative overflow-hidden">
+                <img src="{% static 'assets/img/png/p5.png' %}" alt class="-z-10 grayscale" />
+                <div class="play absolute inset-0">
+                  <img src="{% static 'assets/img/svg/play.svg' %}" alt class="play-icon absolute" />
+                </div>
+              </div>
+              <div class="p-1-misc mt-1 w-full">
+                <p class="text-base font-normal text-custom-t">
+                  Cathrine - Placed at Script Lanes for 3.5 LPA
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== Success Ends ==== -->
+
+    <!-- ==== ConnectAnimation Starts ==== -->
+
+    <section>
+        <div class="connect-main mx-auto 2xlbigscreen:container">
+          <div class="connect-h px-24 py-4 pb-12 phone_max:px-8">
+            <h1 class="text-4xl font-medium text-custom-t phone_max:text-2xl">
+              Connect With Like-minded people in our community
+            </h1>
+          </div>
+          <div class="connect-c scroll-container">
+            <div class="grid-container max-w-fit">
+              <div class="grid-item item1">
+                <img src="{% static 'assets/img/png/Rectangle 4 (1).png' %}" alt />
+              </div>
+              <div class="grid-item item2">
+                <img src="{% static 'assets/img/png/Rectangle 3.png' %}" alt class="h-full" />
+              </div>              
+              <div class="grid-item item3 grid justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-secondary">2100</h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUHACK PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item item4">
+                <img src="{% static 'assets/img/png/Rectangle 4.png' %}" alt class="rounded-xl" />
+              </div>
+              <div class="grid-item item5">
+                <img src="{% static 'assets/img/png/Rectangle 5.png' %}" alt class="rounded-xl" />
+              </div>              
+              <div class="grid-item item6 grid items-center justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-[#B9FF66]">1500</h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUVISION PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item item7">
+                <img src="{% static 'assets/img/png/Rectangle 5 (1).png' %}" alt class="rounded-xl" />
+              </div>              
+              <div class="grid-item item8 grid items-center justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-secondary">
+                      3000+
+                    </h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUVISION PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-container max-w-fit">
+              <div class="grid-item item1">
+                <img src="{% static 'assets/img/png/Rectangle 4 (1).png' %}" alt />
+              </div>
+              <div class="grid-item item2">
+                <img src="{% static 'assets/img/png/Rectangle 3.png' %}" alt class="h-full" />
+              </div>              
+              <div class="grid-item item3 grid justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-secondary">2100</h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUHACK PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item item4">
+                <img src="{% static 'assets/img/png/Rectangle 4.png' %}" alt class="rounded-xl" />
+              </div>
+              <div class="grid-item item5">
+                <img src="{% static 'assets/img/png/Rectangle 5.png' %}" alt class="rounded-xl" />
+              </div>              
+              <div class="grid-item item6 grid items-center justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-[#B9FF66]">1500</h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUVISION PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item item7">
+                <img src="{% static 'assets/img/png/Rectangle 5 (1).png' %}" alt class="rounded-xl" />
+              </div>              
+              <div class="grid-item item8 grid items-center justify-center rounded-xl bg-neutral-p p-4">
+                <div class="gc_1 max-w-fit">
+                  <div class="gc_t">
+                    <h2 class="pb-1 text-3xl font-medium text-secondary">
+                      3000+
+                    </h2>
+                  </div>
+                  <div class="gc_n">
+                    <p class="text-base font-normal text-neutral-g">
+                      EDUVISION PARTICIPANTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- ==== ConnectAnimation End ==== -->
+    
+        <!-- ==== Faculties Starts ==== -->
+
+  <section class>
+    <div class="faculties-main 2xlbigscreen:conntainer mx-auto flex flex-col px-24 py-20 smallscreen:px-8">
+      <div class="faculties-h px-24 neg_smallscreen:px-0 phone_max:px-8">
+        <h1 class="text-4xl font-medium text-custom-t phone_max:text-2xl">
+          Our Faculties
+        </h1>
+      </div>
+      <div class="faculty relative flex flex-row gap-y-8 py-12 smallscreen:flex-wrap justify-center">
+        <div class="f-1 relative mx-3 flex flex-col overflow-hidden">
+          <div class="f-title relative flex w-full justify-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="84" height="32" viewBox="0 0 84 32" fill="none" class="f-s">
+              <path d="M0.837891 0L83.8379 0V32H73.3921L0.837891 0Z" fill="#0F0F0F" />
+            </svg>
+            <h1 class="f-t-h flex items-center bg-primary px-1 text-custom-t">
+              CEO
+            </h1>
+          </div>
+          <div class="f-image">
+            <img src="{% static 'assets/img/png/jassim.png' %}" alt class="relative -mb-1" />
+          </div>
+          <div class="f-b-t absolute bottom-0">
+            <div class="f-title-b relative flex w-full rotate-180 justify-end">
+              <svg xmlns="http://www.w3.org/2000/svg" width="84" height="32" viewBox="0 0 84 32" fill="none"
+                class="f-s-b">
+                <path d="M0.837891 0L83.8379 0V32H73.3921L0.837891 0Z" fill="#0F0F0F" />
+              </svg>
+              <h1 class="f-t-h flex rotate-180 items-center bg-primary px-1 text-custom-t">
+                Jassim Veeran
+              </h1>
+            </div>
+          </div>
+          <div class="center-s absolute">
+            <img src="{% static 'assets/img/svg/Type=radialLines.svg' %}" alt class />
+          </div>
+        </div>
+        <div class="f-1 relative mx-3 flex flex-col overflow-hidden">
+          <div class="f-title relative flex w-full justify-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="84" height="32" viewBox="0 0 84 32" fill="none" class="f-s">
+              <path d="M0.837891 0L83.8379 0V32H73.3921L0.837891 0Z" fill="#0F0F0F" />
+            </svg>
+            <h1 class="f-t-h flex items-center bg-primary px-1 text-custom-t">
+              CTO
+            </h1>
+          </div>
+          <div class="f-image">
+            <img src="{% static 'assets/img/png/sarath.png' %}" alt class="relative -mb-1" />
+          </div>
+          <div class="f-b-t absolute bottom-0">
+            <div class="f-title-b relative flex w-full rotate-180 justify-end">
+              <svg xmlns="http://www.w3.org/2000/svg" width="84" height="32" viewBox="0 0 84 32" fill="none"
+                class="f-s-b">
+                <path d="M0.837891 0L83.8379 0V32H73.3921L0.837891 0Z" fill="#0F0F0F" />
+              </svg>
+              <h1 class="f-t-h flex rotate-180 items-center bg-primary px-1 text-custom-t">
+                Sarath Kumar R S
+              </h1>
+            </div>
+          </div>
+          <div class="center-s absolute">
+            <img src="{% static 'assets/img/svg/Type=squareArray.svg' %}" alt class />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== Faculties End ==== -->
+
+    <!-- ==== FAQ Starts ==== -->
+
+    <section class="mx-auto bg-neutral-p 2xlbigscreen:container">
+      <div class="faq-main flex max-h-[45.4375rem] flex-col p-24 phone_max:max-h-[55rem] phone_max:p-8">
+        <div class="faq-h">
+          <h1 class="text-4xl font-medium text-custom-t phone_max:text-2xl">
+            Frequently Asked Questions
+          </h1>
+          <p class="mt-3 text-xl font-medium text-custom-t">
+            Quick answers to questions you may have. Can’t find what you’re
+            looking for? Check out our full documentation.
+          </p>
+        </div>
+        <div class="faq-questions my-10 flex flex-col">
+          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+            <div class="q flex items-center justify-between">
+              <div class="q-1 text-custom-t">
+                <p class="font-medium">Where can i watch?</p>
+              </div>
+              <div class="close-q">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+              </div>
+            </div>
+            <div>
+              <p class="clicked-q accordion_answer font-normal text-custom-t">
+                Nibh quisque suscipit fermentum netus nulla cras porttitor
+                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
+                venenatis.
+              </p>
+            </div>
+          </div>
+          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+            <div class="q flex items-center justify-between">
+              <div class="q-1 text-custom-t">
+                <p class="font-medium">
+                  Mauris id nibh eu fermentum mattis purus?
+                </p>
+              </div>
+              <div class="close-q">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+              </div>
+            </div>
+            <div>
+              <p class="clicked-q accordion_answer font-normal text-custom-t">
+                Nibh quisque suscipit fermentum netus nulla cras porttitor
+                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
+                venenatis.
+              </p>
+            </div>
+          </div>
+          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+            <div class="q flex items-center justify-between">
+              <div class="q-1 text-custom-t">
+                <p class="font-medium">Eros imperdiet rhoncus?</p>
+              </div>
+              <div class="close-q">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+              </div>
+            </div>
+            <div>
+              <p class="clicked-q accordion_answer font-normal text-custom-t">
+                Nibh quisque suscipit fermentum netus nulla cras porttitor
+                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
+                venenatis.
+              </p>
+            </div>
+          </div>
+          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+            <div class="q flex items-center justify-between">
+              <div class="q-1 text-custom-t">
+                <p class="font-medium">Fames imperdiet quam fermentum?</p>
+              </div>
+              <div class="close-q">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+              </div>
+            </div>
+            <div>
+              <p class="clicked-q accordion_answer font-normal text-custom-t">
+                Nibh quisque suscipit fermentum netus nulla cras porttitor
+                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
+                venenatis.
+              </p>
+            </div>
+          </div>
+          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+            <div class="q flex items-center justify-between">
+              <div class="q-1 text-custom-t">
+                <p class="font-medium">
+                  Varius vitae, convallis amet lacus sit aliquet nibh?
+                </p>
+              </div>
+              <div class="close-q">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+              </div>
+            </div>
+            <div>
+              <p class="clicked-q accordion_answer font-normal text-custom-t">
+                Nibh quisque suscipit fermentum netus nulla cras porttitor
+                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
+                venenatis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- ==== FAQ Ends ==== -->
+
+      <!-- ==== ContactUs Starts ==== -->
+
+  <section class="container mx-auto px-24 py-20 phone_max:px-8">
+    <div
+      class="call_us_main relative z-50 flex flex-row items-center justify-between rounded-xl border border-solid border-neutral-p p-8 smallscreen:flex-wrap smallscreen:gap-y-4">
+      <div class="call_us_c">
+        <p class="text-xl font-medium text-custom-t">Still have questions?</p>
+        <p class="text-base text-custom-t">
+          Can't find the answer you're for? Please chat to our friendly team.
+        </p>
+      </div>
+      <div>
+        <button class="apply-now-btn btn_2 font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" width="167" height="45" viewBox="0 0 167 45" fill="#FDFC00"
+            class="app-svg">
+            <path
+              d="M150.211 2.03716C149.103 1.01488 147.651 0.447266 146.143 0.447266H6C2.68629 0.447266 0 3.13356 0 6.44727V38.4473C0 41.761 2.68629 44.4473 6 44.4473H161C164.314 44.4473 167 41.761 167 38.4473V20.1528C167 18.4775 166.3 16.8786 165.068 15.7427L150.211 2.03716Z"
+              fill="none" stroke="#FDFC00" stroke-width="3" />
+          </svg>
+          <p class="app-t2">Call Us</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== ContactUs End ==== -->
+
+    <!-- ==== AttractiveIllustration Starts ==== -->
+
+    <section class="after_call_us">
+      <div class="circle_bg z-20 mx-auto h-[60rem] ipad_min:h-[30rem] ipad_min:mx-8">
+        <div class="before_footer relative">
+          <img src="{% static 'assets/img/svg/Blur_02.svg' %}" alt class="pointer-events-none absolute mx-auto select-none" />
+          <img src="{% static 'assets/img/svg/Blur_02.svg' %}" alt class="pointer-events-none absolute mx-auto select-none" />
+        </div>
+        <div class="z-40 flex h-full items-center justify-center">
+          <img src="{% static 'assets/img/svg/innovation.svg' %}" alt class="z-50 ipad_min:h-[9rem]" />
+        </div>
+      </div>
+    </section>
+    <section class="container mx-auto py-12">
+      <div class="apply_animation mx-auto max-w-fit">
+        <div class="apply_rotate relative z-50" id="apply_now_secondary">
+          <img src="{% static 'assets/img/svg/apply_now.svg' %}" alt style="height: 9.5rem; width: 9.5rem" class="rotate_svg" />
+          <div class="hover_state absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+            <svg width="83" height="61" viewBox="0 0 83 61" class="apply_hover_s group hover:scale-125"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M37.0036 31.3878C37.2815 31.16 37.5826 30.9619 37.9018 30.7969L37.8132 30.4009L28.7304 21.4186C28.8278 21.3836 28.9289 21.3598 29.0317 21.3477C30.9169 21.3477 32.802 21.3477 34.693 21.3477C34.9872 21.3842 35.2602 21.5196 35.4671 21.7318C36.2117 22.4291 36.915 23.1678 37.6359 23.8887C38.7646 25.0174 39.8992 26.1402 40.8447 27.0798L49.9453 18.0443C49.1425 18.0972 48.3371 18.0972 47.5343 18.0443C46.9222 17.9491 46.2956 18.0251 45.7241 18.2639C45.1525 18.5028 44.6582 18.8951 44.2959 19.3975C43.3208 20.5794 42.2039 21.6018 41.0811 22.7659C39.6215 21.2827 38.286 19.9589 36.9859 18.6293C36.8161 18.4435 36.6072 18.2977 36.3741 18.2027C36.1411 18.1076 35.8898 18.0656 35.6385 18.0797C30.911 18.0797 26.1834 18.0797 21.4558 18.0797C21.2194 18.0797 20.9772 18.0797 20.6049 18.1152L33.1684 30.6551L11.6875 52.13H16.2437C23.1577 45.2081 30.0777 38.294 37.0036 31.3878Z"
+                fill="#2F2F2F" class="group-hover:fill-secondary" />
+              <path
+                d="M66.1139 8.83154C59.9326 15.0207 53.7493 21.2059 47.5641 27.3872C46.5063 28.445 45.4012 29.4614 44.0893 30.7142L53.3908 39.8739C51.488 39.8739 49.656 39.8444 47.83 39.8739C47.5668 39.8898 47.3035 39.8447 47.0606 39.7422C46.8177 39.6397 46.6017 39.4826 46.4295 39.283C44.6566 37.4747 42.8838 35.6959 41.2351 34.0117L32.0518 43.1241H33.2041C34.2737 43.1241 35.4615 43.4137 36.3775 43.0355C37.2934 42.6573 37.9967 41.6113 38.7708 40.8371C39.5449 40.063 40.2423 39.3007 41.0164 38.4734C42.4465 39.9035 43.7643 41.2035 45.0585 42.5332C45.2335 42.7293 45.45 42.8841 45.6922 42.9864C45.9344 43.0886 46.1964 43.1356 46.459 43.1241C51.1866 43.1241 55.9141 43.1241 60.6417 43.1241C60.875 43.1161 61.1077 43.0964 61.339 43.065L61.4395 42.8641L48.9942 30.4897L70.6878 8.83154H66.1139Z"
+                fill="#2F2F2F" class="group-hover:fill-secondary" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock content %}
+
+
+{% block owlScripts %}
+    <!-- ==== Owl-Carousel Script's ==== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{% endblock owlScripts %}
+
+
+{% block toastrFiles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{% endblock toastrFiles %}

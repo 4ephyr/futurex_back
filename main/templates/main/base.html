@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ==== Meta tags here ==== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ==== FavIcon ==== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicon/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'assets/img/favicon/site.webmanifest' %}" />
+    <link rel="mask-icon" href="{% static 'assets/img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5" />
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon/favicon.ico' %}" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta name="msapplication-config" content="{% static 'assets/img/favicon/browserconfig.xml' %}" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- ==== FavIcon End ==== -->
+    <!-- ==== StyleSheet ==== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
+    <!-- ==== StyleSheet End ==== -->
+    {% block owlStyles %}{% endblock owlStyles %}
+    {% block lottieScript %}{%endblock lottieScript %}
+    <title>FutureX | {% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+    <!-- ==== Header Starts ==== -->
+    <header class="px-20 py-5 2xl:p-10 smallscreen:py-10 phone_max:px-0 phone_max:py-10">
+        <div
+            class="h-main flex items-center justify-between 2xl:mx-auto 2xl:max-w-screen-2xl 2xl:text-xl smallscreen:justify-center">
+            <div
+                class="menu_mobile absolute left-0 top-0 hidden p-5 smallscreen:block smallscreen:py-10 vsmallscreen:px-4 vsmallscreen:py-10 vvsmallscreen:px-8 vvsmallscreen:py-8">
+                <img src="{% static 'assets/img/svg/menu.svg' %}"
+                    class="vsmallscreen:w-[1.375rem]vsmallscreen:h-[2.375rem] my-2 h-[35px]" id="showSlideButton"
+                    alt="Error" />
+            </div>
+            <div class="h-main-logo">
+                <a href="/">
+                    <img src="{% static 'assets/img/svg/BrandLogo.svg' %}"
+                        class="vsmallscreen:min-w-fit vvsmallscreen:min-w-[11.875rem] vvsmallscreen:max-w-[11.875rem]"
+                        alt="Error" />
+                </a>
+            </div>
+            <div class="hearder-nav smallscreen:hidden">
+                <nav class="main-nav">
+                    <ul class="main-nav-ul flex [&>li>a]:p-1 [&>li>a]:text-base [&>li>a]:font-medium [&>li]:mx-2">
+                        <li>
+                            <a href="#" id="new">Programmes</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'main:admissions' %}">Admission</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'main:events' %}">Events</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'main:launchpad' %}">Launchpad</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact us</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- ==== Header End ==== -->
+    <!-- ==== SlideMenu Start ==== -->
+    <div class="sliding-container fixed left-0 top-0 z-[999999] h-full w-full -translate-x-full transform overflow-y-scroll bg-primary transition-transform duration-300 ease-in-out neg_smallscreen:hidden"
+        id="slidingContainer">
+        <div class="sliding-content absolute left-0 top-0 h-full w-full p-8 text-white">
+            <div class="ml-auto max-w-fit px-1 py-1" id="hideSlideButton">
+                <img src="{% static 'assets/img/svg/plus.svg' %}" class="h-8 rotate-45" />
+            </div>
+            <div class="flex flex-col gap-[4.5rem]">
+                <div class="slide_nav">
+                    <nav class="slide_nav_c">
+                        <ul
+                            class="main-nav-ul flex flex-col gap-4 [&>li>a]:p-1 [&>li>a]:text-base [&>li>a]:font-medium [&>li]:my-1 [&>li]:max-w-fit">
+                            <li>
+                                <a href="#" id="new">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">Programmes</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:admissions' %}">Admission</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:events' %}">Events</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:launchpad' %}">Launchpad</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div class="max-w-[30rem]">
+                        <a href="#" class="flex items-center gap-3 bg-neutral-p p-4">
+                            <img src="{% static 'assets/img/svg/whatsapp.svg' %}" alt="Error" />
+                            <p class="text-base font-medium text-custom-t">Chat with us</p>
+                        </a>
+                    </div>
+                    <div class="relative">
+                        <div class="change_language flex max-w-[30rem] cursor-pointer items-center justify-between px-2 py-4"
+                            id="languageDropdown">
+                            <p class="select-none text-custom-t" id="selectedLanguage">
+                                English
+                            </p>
+                            <img src="{% static 'assets/img/svg/arrow-down.svg' %}" alt="Error" />
+                        </div>
+                        <div class="absolute mt-1 hidden w-full max-w-[30rem] bg-neutral-p py-2 shadow-md"
+                            id="languageOptions">
+                            <div class="select-language select-none px-3 py-2 text-gray-200">
+                                English
+                            </div>
+                            <div class="select-language select-none px-3 py-2 text-gray-200">
+                                Arabic
+                            </div>
+                            <div class="select-language select-none px-3 py-2 text-gray-200">
+                                Malayalam
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ==== SlideMenu Ends ==== -->
+    <div class="stars-bg pointer-events-none absolute top-0 -z-[9999] w-full select-none">
+        <img src="{% static 'assets/img/svg/Stars.svg' %}"
+            class="pointer-events-none w-full select-none phone_max:h-[150vh] phone_max:object-cover" alt="Error" />
+    </div>
+    {% block popup %}{% endblock popup %}
+    {% block content %}{% endblock content %}
+    <!-- ==== Footer Starts ==== -->
+    <footer class="container mx-auto">
+        <div
+            class="footer-main flex items-center justify-between px-20 py-14 phone_max:flex-col phone_max:px-8 phone_max:py-4 phone_max:pt-12">
+            <div class="f-d flex max-w-sm flex-col gap-4 phone_max:items-center">
+                <div class="f-logo phone_max:mx-auto phone_max:max-w-fit">
+                    <a href="/">
+                        <img src="{% static 'assets/img/svg/BrandLogo.svg' %}" alt="Error" />
+                    </a>
+                </div>
+                <div class="f-address">
+                    <p class="py-4 text-base font-normal text-custom-t phone_max:text-center">
+                        Bader Business Centre, Office 31, building 2342, Road 2830, Seef
+                        Kingdom of Bahrain
+                    </p>
+                </div>
+                <div class="f-copyright" id="footer_copyright">
+                    <p class="text-base font-normal text-custom-t">
+                        © FutureXBahrain. All rights reserved
+                    </p>
+                </div>
+            </div>
+            <div class="f-nav max_ipadscreen:hidden">
+                <ul
+                    class="main-nav-ul flex flex-col gap-4 [&>li>a]:p-2 [&>li>a]:text-base [&>li>a]:font-medium [&>li]:mx-2">
+                    <li>
+                        <a href="#" id="new">Programmes</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main:admissions' %}">Admission</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main:events' %}">Events</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main:launchpad' %}">Launchpad</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="f-handles max-w-fit" id="footer_handles">
+                <ul
+                    class="main-nav-ul [&>li>a]: flex flex-col gap-4 phone_max:mx-auto phone_max:flex-row [&>li>a]:text-base [&>li>a]:font-medium [&>li]:mx-2">
+                    <li>
+                        <a href="#" id="new">
+                            <img src="{% static 'assets/img/svg/facebook.svg' %}" class="py-1" alt="Error" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="new">
+                            <img src="{% static 'assets/img/svg/linkedin.svg' %}" class="py-1" alt="Error" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="new">
+                            <img src="{% static 'assets/img/svg/instagram.svg' %}" class="py-1" alt="Error" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="new">
+                            <img src="{% static 'assets/img/svg/youtube.svg' %}" class="py-1" alt="Error" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- ==== Footer Ends ==== -->
+    <!-- ==== Script's Comes Last ==== -->
+    <script src="{% static 'assets/js/scripts.js' %}" defer></script>
+    {% block owlScripts %}{% endblock owlScripts %}
+    {% block toastrFiles %}{% endblock toastrFiles %}
+    <!-- ==== Script's End ==== -->
+</body>
+
+</html>

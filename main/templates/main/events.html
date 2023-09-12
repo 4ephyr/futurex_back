@@ -1,0 +1,147 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Events{% endblock title %}
+
+{% block content %}
+<!-- ==== Spotlight Starts ==== -->
+  
+<section class="bigscreen:container mx-auto px-[5rem] py-[4.5rem] ipadscreen:px-8">
+    <div class="evt_sp_main flex gap-8 justify-center medscreen:flex-wrap medscreen:gap-y-8">
+      <div class="evt_sp_c max-w-[37rem]">
+        <div class="webinar_evt p-8 bg-transparent border border-solid border-custom-t group hover:border-secondary rounded-br-[6.25rem] flex flex-col gap-6">
+          <a href="{% url "main:event" %}" class="max-w-fit"><p class="text-custom-t py-2 max-w-fit font-medium text-base px-5 bg-transparent border border-solid border-custom-t group-hover:border-secondary rounded-[3.1rem]">Learn More</p></a>
+          <p class="text-custom-t font-bold text-4xl ipadscreen:text-2xl">How AI is Enhancing the Value of Human Skills</p>
+          <p class="text-custom-t text-xl font-normal  ipadscreen:text-base">AI is reducing the cost of some tasks, but increasing the value of others. Learn how AI can help workers develop and showcase their soft skills, such as creativity, common sense, judgment, and communication.</p>
+        </div>
+      </div>
+      <div class="upcoming_evt relative overflow-hidden">
+        <div class="upcoming_main max-w-[37rem] h-full relative group">
+          <div class="upcmng_evt_c relative p-8 h-full group hover:border-secondary flex flex-col gap-6 justify-between">
+            <p class="text-primary bg-secondary py-2 max-w-fit font-medium text-base px-5 border border-solid border-secondary group-hover:border-secondary rounded-[3.1rem]">Upcoming Event</p>
+           <div class="flex flex-col gap-3 z-[999]">
+            <div class="flex flex-col">
+              <p class="text-custom-t font-bold text-4xl ipadscreen:text-2xl">EduVision</p>
+            <p class="text-custom-t text-xl font-normal ipadscreen:text-base">A summit for exploring the future of education, where participants can network, exchange ideas, and discover new opportunities.</p>
+            </div>
+            <div class="evt_date flex justify-between">
+              <p class="text-custom-t font-medium text-base ipadscreen:text-[.9rem]">
+                06 August 2023
+              </p>
+              <p class="text-custom-t font-medium text-base ipadscreen:text-[.9rem]">
+                11:30 AM
+              </p>
+            </div>
+           </div>
+          </div>
+          <img src="{% static 'assets/img/png/evangeline-shaw-CiO3eBBxqJA-unsplash.jpg' %}" alt="" class="ipadscreen:h-full absolute  top-0 -z-10 max-h-full w-full object-cover grayscale group-hover:grayscale-0">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== Spotlight Ends ==== -->
+
+  <section class="news_main bigscreen:container mx-auto pb-20">
+    <div class="news_events_wrapper flex">
+      <div class="only_news w-[60%] smallscreen:w-auto">
+        <div class="news_heading py-8 border-y-[1.5px] border-solid border-custom-t border-r-[1.5px] px-20 smallscreen:border-r-0 ipadscreen:px-8">
+          <h1 class="text-custom-t text-[1.9375rem] font-light">News</h1>
+        </div>
+        <div class="">
+          <div class="single_news_main ipadscreen:grid ipadscreen:place-items-center flex gap-8 pl-20 pr-8 ipadscreen:px-8 smallscreen:pr-20 py-8 border-r-[1.5px] border-solid border-custom-t border-b-[1.5px] smallscreen:border-r-0">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="max-h-[12.5rem] ipadscreen:max-h-full ipadscreen:h-full ipadscreen:w-full ipadscreen:max-w-full w-auto object-cover max-w-[12.5rem]">
+            </div>
+            <a href="{% url "main:event" %}" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">How AI is Changing the Future of Work</p>
+                <p class="text-custom-t font-normal text-base">AI is not only automating millions of jobs, but also creating millions more. Learn how AI can help workers reskill, upskill, and find new opportunities in the changing labor market.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8 flex justify-between items-center">06 August 2023 <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt=""></span>
+            </div>
+            </a>
+          </div>
+          <div class="single_news_main ipadscreen:grid ipadscreen:place-items-center flex gap-8 pl-20 pr-8 ipadscreen:px-8 smallscreen:pr-20 py-8 border-r-[1.5px] border-solid border-custom-t border-b-[1.5px] smallscreen:border-r-0">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="max-h-[12.5rem] ipadscreen:max-h-full ipadscreen:h-full ipadscreen:w-full ipadscreen:max-w-full w-auto object-cover max-w-[12.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">How AI is Changing the Future of Work</p>
+                <p class="text-custom-t font-normal text-base">AI is not only automating millions of jobs, but also creating millions more. Learn how AI can help workers reskill, upskill, and find new opportunities in the changing labor market.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8 flex justify-between items-center">06 August 2023 <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt=""></span>
+            </div>
+            </a>
+          </div>
+          <div class="single_news_main ipadscreen:grid ipadscreen:place-items-center flex gap-8 pl-20 pr-8 ipadscreen:px-8 smallscreen:pr-20 py-8 border-r-[1.5px] border-solid border-custom-t border-b-[1.5px] smallscreen:border-r-0">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="max-h-[12.5rem] ipadscreen:max-h-full ipadscreen:h-full ipadscreen:w-full ipadscreen:max-w-full w-auto object-cover max-w-[12.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">How AI is Changing the Future of Work</p>
+                <p class="text-custom-t font-normal text-base">AI is not only automating millions of jobs, but also creating millions more. Learn how AI can help workers reskill, upskill, and find new opportunities in the changing labor market.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8 flex justify-between items-center">06 August 2023 <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt=""></span>
+            </div>
+            </a>
+          </div>
+          <div class="single_news_main ipadscreen:grid ipadscreen:place-items-center flex gap-8 pl-20 pr-8 ipadscreen:px-8 smallscreen:pr-20 py-8 border-r-[1.5px] border-solid border-custom-t border-b-[1.5px] smallscreen:border-r-0">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="max-h-[12.5rem] ipadscreen:max-h-full ipadscreen:h-full ipadscreen:w-full ipadscreen:max-w-full w-auto object-cover max-w-[12.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">How AI is Changing the Future of Work</p>
+                <p class="text-custom-t font-normal text-base">AI is not only automating millions of jobs, but also creating millions more. Learn how AI can help workers reskill, upskill, and find new opportunities in the changing labor market.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8 flex justify-between items-center">06 August 2023 <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt=""></span>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="only_events w-[40%] smallscreen:hidden">
+        <div class="news_heading py-8 border-y-[1.5px] border-solid border-custom-t px-8">
+          <h1 class="text-custom-t text-[1.9375rem] font-light">Recent Events</h1>
+        </div>
+        <div class="">
+          <div class="flex gap-8 py-8 pl-8 pr-20 border-solid border-custom-t border-b-[1.5px]">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="max-h-[12.5rem] w-auto object-cover max-w-[7.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">EduHack</p>
+                <p class="text-custom-t font-normal text-base">Collaborate, create, and solve real-world challenges with technology.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8">06 August 2023 <span>2.30 PM</span></span>
+            </div>
+            </a>
+          </div>
+          <div class="flex gap-8 py-8 pl-8 pr-20 border-solid border-custom-t border-b-[1.5px]">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553 (1).png' %}" alt="" class="max-h-[12.5rem] w-auto object-cover max-w-[7.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">EduHack</p>
+                <p class="text-custom-t font-normal text-base">Collaborate, create, and solve real-world challenges with technology.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8">06 August 2023 <span>2.30 PM</span></span>
+            </div>
+            </a>
+          </div>
+          <div class="flex gap-8 py-8 pl-8 pr-20 border-solid border-custom-t border-b-[1.5px]">
+            <div class="news_image">
+                <img src="{% static 'assets/img/png/Rectangle 1553 (1).png' %}" alt="" class="max-h-[12.5rem] w-auto object-cover max-w-[7.5rem]">
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-2xl">EduHack</p>
+                <p class="text-custom-t font-normal text-base">Collaborate, create, and solve real-world challenges with technology.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-8">06 August 2023 <span>2.30 PM</span></span>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

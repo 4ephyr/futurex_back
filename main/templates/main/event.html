@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Event{% endblock title %}
+
+{% block owlStyles %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />{% endblock owlStyles %}
+
+{% block content %}
+    <!-- ==== Spotlight Starts ==== -->
+  
+    <section class="news_single bigscreen:mx-auto pt-20 pb-12 border-solid border-b border-custom-t max-w-[74.375rem] mx-auto smallscreen:py-12">
+        <div class="single_news_main flex gap-8 smallscreen:grid place-items-center px-8">
+            <div class="news_image flex-shrink-0">
+                <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="" class="object-cover max-w-full">
+            </div>
+            <div class="news_subject max-w-[46.7rem] flex flex-col">
+                <p class="text-custom-t font-bold text-[2.4rem] smallscreen:text-2xl">How AI is Changing the Future of Work</p>
+                <p class="text-custom-t font-normal text-2xl smallscreen:text-base smallscreen:mt-4">AI is not only automating millions of jobs, but also creating millions more. Learn how AI can help workers reskill, upskill, and find new opportunities in the changing labor market.</p>
+                <span class="text-custom-t text-[0.8125rem] font-medium mt-auto smallscreen:mt-8">06 August 2023</span>
+            </div>
+        </div>
+      </section>
+      
+          <!-- ==== Spotlight Ends ==== -->
+    
+      <section class="px-20 py-[6.3rem] bigscreen:container mx-auto smallscreen:py-8 smallscreen:px-8">
+        <div class="news_content_main flex flex-col gap-10">
+            <div class="news_content flex flex-col gap-8">
+                <p class="text-custom-t text-xl">Artificial intelligence (AI) is one of the most transformative technologies of our time. It has the potential to revolutionize various sectors of the economy, from health care to manufacturing, from education to entertainment. AI can perform tasks that require human intelligence, such as understanding natural language, recognizing images, and making decisions. AI can also learn from data and improve its performance over time.</p>
+                <p class="text-custom-t text-xl">However, AI also poses significant challenges and opportunities for the future of work. How will AI affect the demand and supply of labor? What skills will workers need to thrive in the age of AI? How will AI impact the quality and security of work? These are some of the questions that policymakers, employers, educators, and workers need to address in order to prepare for the future of work in a dynamic and uncertain environment.</p>
+            </div>
+            <div class="news_conclusion flex flex-col gap-8">
+                <h1 class="text-custom-t text-[1.5rem] font-medium">Conclusion</h1>
+                <p class="text-custom-t text-xl">Artificial intelligence (AI) is one of the most transformative technologies of our time. It has the potential to revolutionize various sectors of the economy, from health care to manufacturing, from education to entertainment. AI can perform tasks that require human intelligence, such as understanding natural language, recognizing images, and making decisions. AI can also learn from data and improve its performance over time.</p>
+                <p class="text-custom-t text-xl">However, AI also poses significant challenges and opportunities for the future of work. How will AI affect the demand and supply of labor? What skills will workers need to thrive in the age of AI? How will AI impact the quality and security of work? These are some of the questions that policymakers, employers, educators, and workers need to address in order to prepare for the future of work in a dynamic and uncertain environment.</p>
+            </div>
+        </div>
+      </section>
+    
+      <section class="latest_news bigscreen:container mx-auto px-20 pb-24 smallscreen:px-8">
+        <div class="latest_news_main flex flex-col gap-8">
+            <div class="lates_news_h">
+                <h1 class="text-custom-t font-bold text-[1.93rem]">Latest News</h1>
+            </div>
+            <div class="latest_news_c flex flex-wrap gap-6 justify-center bigscreen:justify-between" id="3rd-carousel">
+                <div class="news_c_main">
+                    <div class="news_c max-w-[17.25rem] p-6 border border-solid border-custom-t flex flex-col gap-4">
+                        <div class="news_img">
+                        <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="Error">
+                        </div>
+                        <p class="text-custom-t text-base font-bold">How AI is Changing the Future of Work</p>
+                        <a href="#" class="news_read_more">
+                            <div class="news_date flex justify-between">
+                                <span class="text-custom-t">06 August 2023</span>
+                                <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="news_c_main">
+                    <div class="news_c max-w-[17.25rem] p-6 border border-solid border-custom-t flex flex-col gap-4">
+                        <div class="news_img">
+                        <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="Error">
+                        </div>
+                        <p class="text-custom-t text-base font-bold">How AI is Changing the Future of Work</p>
+                        <a href="#" class="news_read_more">
+                            <div class="news_date flex justify-between">
+                                <span class="text-custom-t">06 August 2023</span>
+                                <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="news_c_main">
+                    <div class="news_c max-w-[17.25rem] p-6 border border-solid border-custom-t flex flex-col gap-4">
+                        <div class="news_img">
+                        <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="Error">
+                        </div>
+                        <p class="text-custom-t text-base font-bold">How AI is Changing the Future of Work</p>
+                        <a href="#" class="news_read_more">
+                            <div class="news_date flex justify-between">
+                                <span class="text-custom-t">06 August 2023</span>
+                                <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="news_c_main">
+                    <div class="news_c max-w-[17.25rem] p-6 border border-solid border-custom-t flex flex-col gap-4">
+                        <div class="news_img">
+                        <img src="{% static 'assets/img/png/Rectangle 1553.png' %}" alt="Error">
+                        </div>
+                        <p class="text-custom-t text-base font-bold">How AI is Changing the Future of Work</p>
+                        <a href="#" class="news_read_more">
+                            <div class="news_date flex justify-between">
+                                <span class="text-custom-t">06 August 2023</span>
+                                <img src="{% static 'assets/img/svg/arrow-right.svg' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+{% endblock content %}
+
+{% block owlScripts %}
+    <!-- ==== Owl-Carousel Script's ==== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{% endblock owlScripts %}

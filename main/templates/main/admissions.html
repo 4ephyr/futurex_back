@@ -1,0 +1,162 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Admission{% endblock title %}
+
+{% block owlStyles %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />{% endblock owlStyles %}
+
+{% block content %}
+
+<!-- ==== Spotlight Starts ==== -->
+
+<section class="container mx-auto">
+    <div class="spt_h text-center pt-[1.89rem] pb-4">
+      <h1 class="text-custom-t font-medium text-[1.87rem]">Process to join FutureX</h1>
+    </div>
+    <div class="admission_illustration items-center flex flex-row justify-evenly container mx-auto max-w-[80rem] ipadscreen:hidden">
+      <div class="admission_i_1">
+        <img src="{% static 'assets/img/svg/focused_working.svg' %}" alt="">
+      </div>
+      <div class="admission_i_arrow medscreen:mx-8">
+        <img src="{% static 'assets/img/svg/Arrow 6.svg' %}" alt=""/>
+      </div>
+      <div class="admission_i_2">
+        <img src="{% static 'assets/img/svg/job_interview.svg' %}" alt="">
+      </div>
+      <div class="admission_i_arrow medscreen:mx-8">
+        <img src="{% static 'assets/img/svg/Arrow 6.svg' %}" alt=""/>
+      </div>
+      <div class="admission_i_3">
+        <img src="{% static 'assets/img/svg/success.svg' %}" alt="">
+      </div>
+    </div>
+    <div class="the_process py-6 max-w-fit mx-auto">
+      <div class="p_main flex flex-wrap container mx-auto justify-center gap-x-8">
+        <div class="p_1 max-w-[23.87rem] medscreen:mx-4 my-3 ipadscreen:max-w-none">
+          <div class="p_c p-8 bg-neutral-b leading-[1.2] min-h-[15.8rem]">
+            <p class="font-normal text-custom-t mb-4 text-[1.56rem] ipadscreen:text-[1.5125rem]">#1</p>
+            <p class="font-medium text-custom-t mb-4 text-[1.96rem]">Apply Online</p>
+            <p class="font-medium text-custom-t text-[1.25rem]">Complete your application online and select an interview date that you’re comfortable with.</p>
+          </div>
+        </div>
+        <div class="p_2 max-w-[23.87rem] medscreen:mx-4 my-3 ipadscreen:max-w-none">
+          <div class="p_c p-8 bg-custom-t leading-[1.2] min-h-[15.8rem]">
+            <p class="font-normal text-primary-t mb-4 text-[1.56rem] ipadscreen:text-[1.5125rem]">#2</p>
+            <p class="font-medium text-primary-t mb-4 text-[1.96rem]">The Interview</p>
+            <p class="font-medium text-primary-t text-[1.25rem]">Online interview time! Be yourself and answer honestly. We’re excited for you!</p>
+          </div>
+        </div>
+        <div class="p_3 max-w-[23.87rem] medscreen:mx-4 my-3 ipadscreen:max-w-none ipadscreen:w-full">
+          <div class="p_c p-8 bg-secondary leading-[1.2] min-h-[15.8rem]">
+            <p class="font-normal text-primary-t mb-4 text-[1.56rem] ipadscreen:text-[1.5125rem]">#3</p>
+            <p class="font-medium text-primary-t mb-4 text-[1.96rem]">Joining Mail</p>
+            <p class="font-medium text-primary-t text-[1.25rem]">You aced it! Check email for joining mail and cheer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="interview_motivation py-3">
+      <p class="font-normal text-center text-custom-t mb-6 text-base">No big deal if you failed the interview. Just learn from it, reschedule it and keep pushing until you nail it.</p>
+    </div>
+  </section>
+  
+  <!-- ==== Spotlight Ends ==== -->
+
+    <!-- ==== Pricing Starts ==== -->
+
+    <section class="pricing mx-auto container py-40">
+        <div class="pricing_main">
+          <div class="pricing_h">
+            <h1 class="text-custom-t text-[1.9rem] font-medium text-center">Pricing</h1>
+          </div>
+          <div class="pricing_c flex flex-wrap container mx-auto justify-center py-10 gap-8" id="admission_mobile_carousel">
+            {% for course in courses|dictsort:"position"  %}
+            <div class="pr_1 medscreen:mx-4 border-2 border-solid border-secondary max-w-[24.4rem] min-h-[24.9rem]">
+                <div class="pr_c min-h-[32.625rem] px-8 py-6 flex flex-col gap-4">
+                  <p class="text-custom-t text-base font-medium leading-[1.2rem] slashed-zero"><span>0</span>{{ course.id }}</p>
+                  <p class="font-bold text-custom-t text-[1.56rem] mt-4">{{ course.name }}</p>
+    
+                {% for feature in course.features  %}
+                  <p class="text-custom-t flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 50 50" fill="none" class="shrink-0">
+                      <circle cx="25" cy="25" r="23" stroke="#D9D9D9" stroke-width="4" fill="transparent" />
+                      <path d="M15 25L22 32L36 18" stroke="#D9D9D9" stroke-width="4" stroke-linecap="round" />
+                    </svg>
+                    {{ feature }}              
+                  </p>
+                {% endfor %}
+                <p class="font-bold text-custom-t text-[1.25rem] mt-4">BD {{ course.price }} /-</p>
+                </div>
+              </div>
+          {% endfor %}
+          </div>
+        </div>
+      </section>
+  
+    <!-- ==== Pricing Ends ==== -->
+
+      <!-- ==== ApplyNow Starts ==== -->
+
+  <section class="container mx-auto apply_now_popup_2 pb-56 pt-32">
+    <div class="apply_now_popup relative">
+      <div class="justify-beteen mx-auto pop_up_main items-center w-9/12 max-w-screen-lg bg-neutral-p p-10 flex flex-row medscreen:w-auto ipadscreen:block ipadscreen:px-5">
+        <div class="details_form grow-2 max-w-[50%] ipadscreen:max-w-none">
+          <form action="javascript:void(0)" class="details flex flex-col gap-4">
+            <div class="name_input flex flex-col">
+              <label for="name" class="text-sm text-[#9E9E9E] font-medium mb-2">Name</label>
+              <input type="text" id="name" class="w-full tracking-wide font-base px-6 py-3 rounded-xl bg-neutral-p placeholder:text-[#9E9E9E]" placeholder="Erika Herman">
+            </div>
+            <div class="email_input flex flex-col">
+              <label for="email" class="text-sm text-[#9E9E9E] font-medium mb-2">Email</label>
+              <input type="email" id="email" class="w-full tracking-wide font-base px-6 py-3 rounded-xl bg-neutral-p placeholder:text-[#9E9E9E]" placeholder="erikaherman@example.com">
+            </div>
+            <div class="phone_input flex flex-col">
+              <label for="phone" class="text-sm text-[#9E9E9E] font-medium mb-2">Phone Number</label>
+              <div class="flex flex-row gap-3">
+                <select class="border-0 border-none outline-none bg-neutral-p text-[#9E9E9E] rounded-xl">
+                  <option value="option1">+ 973</option>
+                  <option value="option2">+ 91</option>
+                  <option value="option3">+ 1</option>
+                </select>
+                <input type="tel" id="phone" class="w-full tracking-wide font-base px-6 py-3 rounded-xl bg-neutral-p placeholder:text-[#9E9E9E]" placeholder="00000000">
+              </div>
+            </div>
+            <div class="state_input flex flex-col">
+              <label for="state" class="text-sm text-[#9E9E9E] font-medium mb-2">State</label>
+              <input type="text" id="state" class="w-full tracking-wide font-base px-6 py-3 rounded-xl bg-neutral-p placeholder:text-[#9E9E9E]" placeholder="Alabama">
+            </div>
+            <div class="course_input flex flex-col">
+              <label for="course" class="text-sm text-[#9E9E9E] font-medium mb-2">Course</label>
+              <input type="text" id="course" class="w-full tracking-wide font-base px-6 py-3 rounded-xl bg-neutral-p placeholder:text-[#9E9E9E]" placeholder="UI/UX Designer" list="courses">
+              <datalist id="courses">
+                <option value="UI/UX Designer"></option>
+                <option value="Web Development"></option>
+                <option value="FullStack Development"></option>
+              </datalist>
+              <div id="error-message" class="text-red-500 mt-2 hidden">Please provide a valid course.</div>
+            </div>          
+            <div class="form_submit place-items-end grid">
+              <button class="apply-now-btn font-medium btn_3" id="submit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="167" height="45" viewBox="0 0 167 45" fill="#FDFC00" class="app-svg">
+                  <path d="M150.211 2.03716C149.103 1.01488 147.651 0.447266 146.143 0.447266H6C2.68629 0.447266 0 3.13356 0 6.44727V38.4473C0 41.761 2.68629 44.4473 6 44.4473H161C164.314 44.4473 167 41.761 167 38.4473V20.1528C167 18.4775 166.3 16.8786 165.068 15.7427L150.211 2.03716Z" fill="none" stroke="#FDFC00" stroke-width="3" />
+                </svg>
+                <p class="app-t3">Apply Now</p>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="pop_illustration m-auto p-12 ipadscreen:p-6">
+          <img src="{% static 'assets/img/svg/popup_illustration.svg' %}" alt="" class="ipadscreen:mx-auto">
+        </div>
+      </div>
+    </div>
+   </section>
+
+  <!-- ==== ApplyNow Ends ==== -->  
+{% endblock content %}
+
+{% block owlScripts %}
+    <!-- ==== Owl-Carousel Script's ==== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{% endblock owlScripts %}
