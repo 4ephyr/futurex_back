@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Courses, ApplicationDetails, partnerLogos
+from django_ratelimit.decorators import ratelimit
+from .models import Courses, ApplicationDetails, partnerLogos, FrequentlyAskedQuestions
 from .forms import ApplicationDetailsForm
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -16,10 +17,10 @@ def indexPage(request):
         ("91", "IN"),
         ("1", "US"),
     ]
-
     form = ApplicationDetailsForm()
+    faq = FrequentlyAskedQuestions.objects.all()[:5]
 
-    return render(request, 'main/index.html', {'form': form, 'country_codes': country_codes, 'partners': replicated_partners})
+    return render(request, 'main/index.html', {'form': form, 'country_codes': country_codes, 'partners': replicated_partners, 'faqs': faq})
 
 def admissionPage(request):
     course = Courses.objects.all()[:3]
@@ -47,8 +48,9 @@ def sendStatusMail(receiver_email, name, course, phone, status='Pending'):
         msg['To'] = receiver_email
         msg['Subject'] = 'Application Confirmation Of Your Selected Course'
 
-        message = ""
-        subject = ""
+        if status in ["Pending", "Selected", "Rejected"]:
+            message = ""
+            subject = ""
 
         if status == 'Pending':
             subject = 'Congratulations! You have been shortlisted for the course'
@@ -105,6 +107,7 @@ FutureX
     except Exception:
         return JsonResponse({'message': 'An error occured while sending the mail'}, status=500)
 
+@ratelimit(key='ip', rate='1/m', method='POST', block=True)
 def reg_submit(request):
    
     if request.method == 'POST':

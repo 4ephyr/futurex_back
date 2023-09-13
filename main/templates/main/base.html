@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
     <!-- ==== StyleSheet End ==== -->
     {% block owlStyles %}{% endblock owlStyles %}
+    {% block toastrstyle %}{% endblock toastrstyle %}
     {% block lottieScript %}{%endblock lottieScript %}
     <title>FutureX | {% block title %}{% endblock title %}</title>
 </head>
@@ -212,7 +213,7 @@
     <!-- ==== Script's Comes Last ==== -->
     <script src="{% static 'assets/js/scripts.js' %}" defer></script>
     {% block owlScripts %}{% endblock owlScripts %}
-    {% block toastrFiles %}{% endblock toastrFiles %}
+    {% block toastrjs %}{% endblock toastrjs %}
     <!-- ==== Script's End ==== -->
 </body>
 

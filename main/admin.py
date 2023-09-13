@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import OurCommunityEvents, Courses, ApplicationDetails, partnerLogos, UpcomingEvent, RecentEvents, News
+from .models import OurCommunityEvents, Courses, ApplicationDetails, partnerLogos, UpcomingEvent, RecentEvents, News, FrequentlyAskedQuestions
 
 
 admin.site.register(OurCommunityEvents)
@@ -9,3 +9,4 @@ admin.site.register(partnerLogos)
 admin.site.register(UpcomingEvent)
 admin.site.register(RecentEvents)
 admin.site.register(News)
+admin.site.register(FrequentlyAskedQuestions)

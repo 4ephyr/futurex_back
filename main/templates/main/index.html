@@ -7,6 +7,8 @@
 
 {% block lottieScript %}<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>{% endblock lottieScript %}
 
+{% block toastrstyle %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">{% endblock toastrstyle %}
+
 {% block popup %}
 
   <!-- ==== PopUp Starts ==== -->
@@ -59,14 +61,15 @@
             </div>
           </div>
           <div class="form_submit grid place-items-end">
-            <button class="apply-now-btn font-medium" id="submit-button" type="submit">
+            <button class="apply-now-btn font-medium mainapply_btn" id="submit-button" type="submit">
+              <div id="loader" class="hidden loader"></div>
               <svg xmlns="http://www.w3.org/2000/svg" width="167" height="45" viewBox="0 0 167 45" fill="#FDFC00"
                 class="app-svg">
                 <path
                   d="M150.211 2.03716C149.103 1.01488 147.651 0.447266 146.143 0.447266H6C2.68629 0.447266 0 3.13356 0 6.44727V38.4473C0 41.761 2.68629 44.4473 6 44.4473H161C164.314 44.4473 167 41.761 167 38.4473V20.1528C167 18.4775 166.3 16.8786 165.068 15.7427L150.211 2.03716Z"
                   fill="none" stroke="#FDFC00" stroke-width="3" />
               </svg>
-              <p class="app-t3">Apply Now</p>
+              <p class="app-t3" id="mainapply">Apply Now</p>
             </button>
           </div>
         </form>
@@ -182,14 +185,16 @@
                       <div class="slide1">
                         <img src="{{partner.partner1.url}}" alt />
                       </div>
-                      <div class="slide1">
-                        <img src="{{partner.partner2.url}}" alt />
-                      </div>
+                      {% if partner.partner2 %}
+                          <div class="slide1">
+                            <img src="{{partner.partner2.url}}" alt />
+                          </div>
+                      {% endif %}
                       {% if partner.partner3 %}
                           <div class="slide1">
                             <img src="{{partner.partner3.url}}" alt />
                           </div>
-                        {% endif %}
+                      {% endif %}
                     {% endfor %}
                   </div>
           </div>
@@ -533,95 +538,23 @@
           </p>
         </div>
         <div class="faq-questions my-10 flex flex-col">
-          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
-            <div class="q flex items-center justify-between">
-              <div class="q-1 text-custom-t">
-                <p class="font-medium">Where can i watch?</p>
+          {% for faq in faqs %}
+            <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
+              <div class="q flex items-center justify-between">
+                <div class="q-1 text-custom-t">
+                  <p class="font-medium">{{faq.question}}</p>
+                </div>
+                <div class="close-q flex-shrink-0">
+                  <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
+                </div>
               </div>
-              <div class="close-q">
-                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
-              </div>
-            </div>
-            <div>
-              <p class="clicked-q accordion_answer font-normal text-custom-t">
-                Nibh quisque suscipit fermentum netus nulla cras porttitor
-                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
-                venenatis.
-              </p>
-            </div>
-          </div>
-          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
-            <div class="q flex items-center justify-between">
-              <div class="q-1 text-custom-t">
-                <p class="font-medium">
-                  Mauris id nibh eu fermentum mattis purus?
+              <div>
+                <p class="clicked-q accordion_answer font-normal text-custom-t">
+                  {{faq.answer}}
                 </p>
               </div>
-              <div class="close-q">
-                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
-              </div>
             </div>
-            <div>
-              <p class="clicked-q accordion_answer font-normal text-custom-t">
-                Nibh quisque suscipit fermentum netus nulla cras porttitor
-                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
-                venenatis.
-              </p>
-            </div>
-          </div>
-          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
-            <div class="q flex items-center justify-between">
-              <div class="q-1 text-custom-t">
-                <p class="font-medium">Eros imperdiet rhoncus?</p>
-              </div>
-              <div class="close-q">
-                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
-              </div>
-            </div>
-            <div>
-              <p class="clicked-q accordion_answer font-normal text-custom-t">
-                Nibh quisque suscipit fermentum netus nulla cras porttitor
-                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
-                venenatis.
-              </p>
-            </div>
-          </div>
-          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
-            <div class="q flex items-center justify-between">
-              <div class="q-1 text-custom-t">
-                <p class="font-medium">Fames imperdiet quam fermentum?</p>
-              </div>
-              <div class="close-q">
-                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
-              </div>
-            </div>
-            <div>
-              <p class="clicked-q accordion_answer font-normal text-custom-t">
-                Nibh quisque suscipit fermentum netus nulla cras porttitor
-                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
-                venenatis.
-              </p>
-            </div>
-          </div>
-          <div class="f-q accordion_question flex flex-col border-b border-t border-solid border-neutral-b py-6">
-            <div class="q flex items-center justify-between">
-              <div class="q-1 text-custom-t">
-                <p class="font-medium">
-                  Varius vitae, convallis amet lacus sit aliquet nibh?
-                </p>
-              </div>
-              <div class="close-q">
-                <img src="{% static 'assets/img/svg/plus.svg' %}" alt="Error" class="plus_svg" />
-              </div>
-            </div>
-            <div>
-              <p class="clicked-q accordion_answer font-normal text-custom-t">
-                Nibh quisque suscipit fermentum netus nulla cras porttitor
-                euismod nulla. Orci, dictumst nec aliquet id ullamcorper
-                venenatis.
-              </p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -696,7 +629,6 @@
 {% endblock owlScripts %}
 
 
-{% block toastrFiles %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+{% block toastrjs %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-{% endblock toastrFiles %}
+{% endblock toastrjs %}

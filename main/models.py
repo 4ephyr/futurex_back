@@ -9,6 +9,9 @@ class partnerLogos(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "Partner Logos"
+    
+    def __str__(self):
+        return 'Partner'
 
 class OurCommunityEvents(models.Model):
 
@@ -120,3 +123,14 @@ def add_to_recent_events_and_delete_previous(sender, instance, **kwargs):
 
     if most_recent_upcoming_event:
         most_recent_upcoming_event.delete()
+
+class FrequentlyAskedQuestions(models.Model):
+    question = models.TextField()
+    answer = models.TextField()
+
+    class Meta:
+        verbose_name = verbose_name_plural = "FAQs"
+
+    def __str__(self):
+        id = str(self.id)
+        return "Faq" + " " + id
